@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodify</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="moodify-text" id="moodify-text">
+            moodify
+        </div>
+        <div class="sub-text" id="sub-text">
+            let the music match your mood
+        </div>
+    <div class="glow"></div>
+    <div class="button-container" id="mood-buttons"></div>
+    <div class="button-container" id="genre-buttons"></div>
+    <div class="content-container">
+        <div class="recommended-songs-container" id="song-info"></div>
+        <div class="button-container" id="back-button-container"></div>
+    </div>
+
+    <div class="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <defs>
+                <filter id="squiggly-0">
+                    <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="0"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" />
+                </filter>
+                <filter id="squiggly-1">
+                    <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="1"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+                </filter>
+                <filter id="squiggly-2">
+                    <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="2"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" />
+                </filter>
+                <filter id="squiggly-3">
+                    <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="3"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+                </filter>
+                <filter id="squiggly-4">
+                    <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" seed="4"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" />
+                </filter>
+            </defs>
+        </svg>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>

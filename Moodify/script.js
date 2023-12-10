@@ -43,7 +43,7 @@ const getAccessToken = async () => {
     return accessToken;
 };
 
-const getRecommendedSongsA = async (mood, genre) => {
+const getRecommendedSongs = async (mood, genre) => {
     // Get access token
     const accessToken = await getAccessToken();
 

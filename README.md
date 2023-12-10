@@ -7,6 +7,6 @@ Let the music match your mood!
 - Set-ExecutionPolicy RemoteSigned
 ### Retourner dans le terminal du répertoire de Moodify :
 - http-server -p 8000
-### Le serveur est lancée:
+### Le serveur est lancé:
 ### Aller sur internet et mettre l'url :
 http://localhost:8000/index.html

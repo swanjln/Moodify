@@ -51,47 +51,63 @@ const getRecommendedSongs = async (mood, genre) => {
     const seedGenres = genre.join(',');
 
     // Define target values based on mood
-    let targetDanceability, targetEnergy, targetKey, targetLoudness, targetPopularity, targetTempo;
+    let targetDanceabilityMin, targetDanceabilityMax, targetEnergyMin, targetEnergyMax, targetKey, targetLoudness, targetPopularityMin, targetPopularityMax, targetTempoMin, targetTempoMax;
 
     switch (mood) {
         case 'happy':
-            targetDanceability = 0.8;
-            targetEnergy = 0.8;
-            targetKey = 7; // You can adjust this based on the key associated with happy music
+            targetDanceabilityMin = 0.7;
+            targetDanceabilityMax = 0.9;
+            targetEnergyMin = 0.7;
+            targetEnergyMax = 0.9;
+            targetKey = 7; 
             targetLoudness = 0.8;
-            targetPopularity = 70; // Adjust as needed
-            targetTempo = 120; // Adjust as needed
+            targetPopularityMin = 20; 
+            targetPopularityMax = 80; 
+            targetTempoMin = 120; 
+            targetTempoMax = 130; 
             break;
         case 'sad':
-            targetDanceability = 0.3;
-            targetEnergy = 0.3;
-            targetKey = 2; // You can adjust this based on the key associated with sad music
+            targetDanceabilityMin = 0.2;
+            targetDanceabilityMax = 0.4;
+            targetEnergyMin = 0.2;
+            targetEnergyMax = 0.4;
+            targetKey = 2; 
             targetLoudness = 0.3;
-            targetPopularity = 50; // Adjust as needed
-            targetTempo = 60; // Adjust as needed
+            targetPopularityMin = 0; 
+            targetPopularityMax = 60; 
+            targetTempoMin = 60; 
+            targetTempoMax = 70; 
             break;
         case 'angry':
-            targetDanceability = 0.7;
-            targetEnergy = 0.9;
-            targetKey = 11; // You can adjust this based on the key associated with angry music
+            targetDanceabilityMin = 0.6;
+            targetDanceabilityMax = 0.8;
+            targetEnergyMin = 0.8;
+            targetEnergyMax = 1.0;
+            targetKey = 11; 
             targetLoudness = 0.9;
-            targetPopularity = 60; // Adjust as needed
-            targetTempo = 150; // Adjust as needed
+            targetPopularityMin = 10; 
+            targetPopularityMax = 70; 
+            targetTempoMin = 150; 
+            targetTempoMax = 160; 
             break;
         case 'chill':
-            targetDanceability = 0.5;
-            targetEnergy = 0.5;
-            targetKey = 5; // You can adjust this based on the key associated with chill music
+            targetDanceabilityMin = 0.4;
+            targetDanceabilityMax = 0.6;
+            targetEnergyMin = 0.4;
+            targetEnergyMax = 0.6;
+            targetKey = 5; 
             targetLoudness = 0.5;
-            targetPopularity = 65; // Adjust as needed
-            targetTempo = 90; // Adjust as needed
+            targetPopularityMin = 15; 
+            targetPopularityMax = 75; 
+            targetTempoMin = 90; 
+            targetTempoMax = 100; 
             break;
         default:
             throw new Error('Invalid mood');
     }
 
     // Make a request to Spotify API to get recommended songs
-    const url = `https://api.spotify.com/v1/recommendations?limit=3&market=FR&seed_genres=${seedGenres}&target_danceability=${targetDanceability}&target_energy=${targetEnergy}&target_key=${targetKey}&target_loudness=${targetLoudness}&target_popularity=${targetPopularity}&target_tempo=${targetTempo}`;
+    const url = `https://api.spotify.com/v1/recommendations?limit=2&market=FR&seed_genres=${seedGenres}&target_danceability_min=${targetDanceabilityMin}&target_danceability_max=${targetDanceabilityMax}&target_energy_min=${targetEnergyMin}&target_energy_max=${targetEnergyMax}&target_key=${targetKey}&target_loudness=${targetLoudness}&target_popularity=${targetPopularityMin}&target_tempo=${targetTempoMin}`;
     const headers = {
         Authorization: `Bearer ${accessToken}`,
     };

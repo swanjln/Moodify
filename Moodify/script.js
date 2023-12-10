@@ -43,7 +43,7 @@ const getAccessToken = async () => {
     return accessToken;
 };
 
-const getRecommendedSongs = async (mood, genre) => {
+const getRecommendedSongsA = async (mood, genre) => {
     // Get access token
     const accessToken = await getAccessToken();
 
@@ -107,7 +107,7 @@ const getRecommendedSongs = async (mood, genre) => {
     }
 
     // Make a request to Spotify API to get recommended songs
-    const url = `https://api.spotify.com/v1/recommendations?limit=2&market=FR&seed_genres=${seedGenres}&target_danceability_min=${targetDanceabilityMin}&target_danceability_max=${targetDanceabilityMax}&target_energy_min=${targetEnergyMin}&target_energy_max=${targetEnergyMax}&target_key=${targetKey}&target_loudness=${targetLoudness}&target_popularity=${targetPopularityMin}&target_tempo=${targetTempoMin}`;
+    const url = `https://api.spotify.com/v1/recommendations?limit=3&market=FR&seed_genres=${seedGenres}&target_danceability_min=${targetDanceabilityMin}&target_danceability_max=${targetDanceabilityMax}&target_energy_min=${targetEnergyMin}&target_energy_max=${targetEnergyMax}&target_key=${targetKey}&target_loudness=${targetLoudness}&target_popularity=${targetPopularityMin}&target_tempo=${targetTempoMin}`;
     const headers = {
         Authorization: `Bearer ${accessToken}`,
     };

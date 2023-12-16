@@ -51,7 +51,7 @@ const getRecommendedSongs = async (mood, genre) => {
     const seedGenres = genre.join(',');
 
     // Define target values based on mood
-    let targetDanceabilityMin, targetDanceabilityMax, targetEnergyMin, targetEnergyMax, targetKey, targetLoudness, targetPopularityMin, targetPopularityMax, targetTempoMin, targetTempoMax;
+    let targetDanceabilityMin, targetDanceabilityMax, targetEnergyMin, targetEnergyMax, targetKey, targetLoudness, targetPopularityMin, targetPopularityMax, targetTempoMin, targetTempoMax, targetValence;
 
     switch (mood) {
         case 'happy':
@@ -65,6 +65,7 @@ const getRecommendedSongs = async (mood, genre) => {
             targetPopularityMax = 80; 
             targetTempoMin = 120; 
             targetTempoMax = 130; 
+            targetValence = 0.85;
             break;
         case 'sad':
             targetDanceabilityMin = 0.2;
@@ -77,6 +78,7 @@ const getRecommendedSongs = async (mood, genre) => {
             targetPopularityMax = 60; 
             targetTempoMin = 60; 
             targetTempoMax = 70; 
+            targetValence = 0.2;
             break;
         case 'angry':
             targetDanceabilityMin = 0.6;
@@ -89,6 +91,7 @@ const getRecommendedSongs = async (mood, genre) => {
             targetPopularityMax = 70; 
             targetTempoMin = 150; 
             targetTempoMax = 160; 
+            targetValence = 0.3;
             break;
         case 'chill':
             targetDanceabilityMin = 0.4;
@@ -101,6 +104,7 @@ const getRecommendedSongs = async (mood, genre) => {
             targetPopularityMax = 75; 
             targetTempoMin = 90; 
             targetTempoMax = 100; 
+            targetValence = 0.55;
             break;
         default:
             throw new Error('Invalid mood');
@@ -333,8 +337,8 @@ const displayRecommendedSongs = async (mood, genre) => {
 };
 
 // Example usage:
-const moods = ['happy', 'sad', 'angry', 'chill'];
-const genres = ['classical', 'country', 'rock', 'pop', 'electro', 'hip-hop', 'r-n-b']; // Add more genres as needed
+const moods = ['angry','chill','happy', 'sad'];
+const genres = ['ambient', 'classical', 'country', 'electro', 'jazz', 'hip-hop', 'pop', 'rock', 'r-n-b', 'soul']; // Add more genres as needed
 
 // Call the createButtons function to generate the initial UI
 createButtons(moods, genres);

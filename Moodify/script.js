@@ -27,6 +27,20 @@ const getAccessToken = async () => {
         Authorization: `Basic ${authBase64}`,
         'Content-Type': 'application/x-www-form-urlencoded',
     };
+
+    function shuffle(array) {
+    let currentIndex = array.length;
+    let randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
     
     // Update the data format
     const data = new URLSearchParams();
@@ -111,7 +125,7 @@ const getRecommendedSongs = async (mood, genre) => {
     }
 
     // Make a request to Spotify API to get recommended songs
-    const url = `https://api.spotify.com/v1/recommendations?limit=3&market=FR&seed_genres=${seedGenres}&target_danceability_min=${targetDanceabilityMin}&target_danceability_max=${targetDanceabilityMax}&target_energy_min=${targetEnergyMin}&target_energy_max=${targetEnergyMax}&target_key=${targetKey}&target_loudness=${targetLoudness}&target_popularity=${targetPopularityMin}&target_tempo=${targetTempoMin}`;
+    const url = `https://api.spotify.com/v1/recommendations?limit=100&market=FR&seed_genres=${seedGenres}&target_danceability_min=${targetDanceabilityMin}&target_danceability_max=${targetDanceabilityMax}&target_energy_min=${targetEnergyMin}&target_energy_max=${targetEnergyMax}&target_key=${targetKey}&target_loudness=${targetLoudness}&target_popularity=${targetPopularityMin}&target_valence=${targetValence}&target_tempo=${targetTempoMin}`;
     const headers = {
         Authorization: `Bearer ${accessToken}`,
     };
@@ -207,11 +221,14 @@ const displayRecommendedSongs = async (mood, genre) => {
     // Call the getRecommendedSongs function from the previous example
     const recommendedSongs = await getRecommendedSongs(mood, [genre]);
 
+    // Shuffle the recommendedSongs array
+    const shuffledSongs = shuffle(recommendedSongs);
+
     // Display recommended songs and images in the UI
     const songContainer = document.getElementById('song-info');
     songContainer.innerHTML = '';
 
-    recommendedSongs.forEach((song, index) => {
+    shuffledSongs.slice(0, 3).forEach((song, index) => {
         // Create a container for each song
         const songInfoContainer = document.createElement('div');
         songInfoContainer.classList.add('song-container');

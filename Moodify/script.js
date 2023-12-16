@@ -26,20 +26,7 @@ const getAccessToken = async () => {
     const headers = {
         Authorization: `Basic ${authBase64}`,
         'Content-Type': 'application/x-www-form-urlencoded',
-    };
-
-    function shuffle(array) {
-    let currentIndex = array.length;
-    let randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
-
-    return array;
 }
     
     // Update the data format
@@ -56,6 +43,19 @@ const getAccessToken = async () => {
     const accessToken = jsonResponse.access_token;
     return accessToken;
 };
+
+function shuffle(array) {
+    let currentIndex = array.length;
+    let randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
 
 const getRecommendedSongs = async (mood, genre) => {
     // Get access token

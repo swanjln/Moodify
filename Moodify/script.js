@@ -69,55 +69,55 @@ const getRecommendedSongs = async (mood, genre) => {
 
     switch (mood) {
         case 'happy':
-            targetDanceabilityMin = 0.7;
-            targetDanceabilityMax = 0.9;
-            targetEnergyMin = 0.7;
-            targetEnergyMax = 0.9;
+            targetDanceabilityMin = 0.6;
+            targetDanceabilityMax = 1;
+            targetEnergyMin = 0.6;
+            targetEnergyMax = 1;
             targetKey = 7; 
             targetLoudness = 0.8;
             targetPopularityMin = 20; 
             targetPopularityMax = 80; 
-            targetTempoMin = 120; 
-            targetTempoMax = 130; 
+            targetTempoMin = 110; 
+            targetTempoMax = 140; 
             targetValence = 0.85;
             break;
         case 'sad':
-            targetDanceabilityMin = 0.2;
-            targetDanceabilityMax = 0.4;
-            targetEnergyMin = 0.2;
-            targetEnergyMax = 0.4;
+            targetDanceabilityMin = 0.1;
+            targetDanceabilityMax = 0.5;
+            targetEnergyMin = 0.1;
+            targetEnergyMax = 0.5;
             targetKey = 2; 
             targetLoudness = 0.3;
-            targetPopularityMin = 0; 
-            targetPopularityMax = 60; 
-            targetTempoMin = 60; 
-            targetTempoMax = 70; 
+            targetPopularityMin = 20; 
+            targetPopularityMax = 80; 
+            targetTempoMin = 50; 
+            targetTempoMax = 90; 
             targetValence = 0.2;
             break;
         case 'angry':
-            targetDanceabilityMin = 0.6;
-            targetDanceabilityMax = 0.8;
-            targetEnergyMin = 0.8;
+            targetDanceabilityMin = 0.5;
+            targetDanceabilityMax = 0.9;
+            targetEnergyMin = 0.7;
             targetEnergyMax = 1.0;
             targetKey = 11; 
             targetLoudness = 0.9;
-            targetPopularityMin = 10; 
-            targetPopularityMax = 70; 
-            targetTempoMin = 150; 
-            targetTempoMax = 160; 
+            targetPopularityMin = 20; 
+            targetPopularityMax = 80; 
+            targetTempoMin = 130; 
+            targetTempoMax = 170; 
             targetValence = 0.3;
             break;
         case 'chill':
-            targetDanceabilityMin = 0.4;
+            targetDanceabilityMin = 0.3;
             targetDanceabilityMax = 0.6;
-            targetEnergyMin = 0.4;
-            targetEnergyMax = 0.6;
+            targetEnergyMin = 0.3;
+            targetEnergyMax = 0.7;
             targetKey = 5; 
-            targetLoudness = 0.5;
-            targetPopularityMin = 15; 
-            targetPopularityMax = 75; 
-            targetTempoMin = 90; 
-            targetTempoMax = 100; 
+            targetLoudness = 0.4;
+            targetPopularityMin = 20; 
+            targetPopularityMax = 80; 
+            targetTempoMin =70; 
+            targetTempoMax = 120; 
             targetValence = 0.55;
             break;
         default:
@@ -259,7 +259,12 @@ const displayRecommendedSongs = async (mood, genre) => {
     
         // Display the song information
         const songInfo = document.createElement('div');
-        songInfo.innerHTML = `<p>Song: ${song.name}</p><p>Artist: ${song.artist}</p>`;
+
+        const truncatedArtist = song.artist.length > 65 ? song.artist.substring(0, 62) + '...' : song.artist;
+        const truncatedName = song.name.length > 65 ? song.name.substring(0, 62) + '...' : song.name;
+
+        songInfo.innerHTML = `<p>Song: ${truncatedName}</p><p>Artist: ${truncatedArtist}</p>`;
+
         songInfoContainer.appendChild(songInfo);
     
         // Append the song information container to the main container

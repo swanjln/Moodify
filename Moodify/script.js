@@ -69,63 +69,71 @@ const getRecommendedSongs = async (mood, genre) => {
 
     switch (mood) {
         case 'happy':
-            targetDanceabilityMin = 0.6;
+            targetDanceabilityMin = 0.5;
             targetDanceabilityMax = 1;
+            targetDanceability = 0.75;
             targetEnergyMin = 0.6;
             targetEnergyMax = 1;
-            targetKey = 7; 
+            //targetKey = 7; 
             targetLoudness = 0.8;
-            targetPopularityMin = 20; 
-            targetPopularityMax = 80; 
-            targetTempoMin = 110; 
-            targetTempoMax = 140; 
+            targetPopularity = 1;
+            targetTempoMin = 100; 
+            targetTempoMax = 180;
+            targetTempo = 135;
             targetValence = 0.85;
+            targetMode = 1;
             break;
         case 'sad':
             targetDanceabilityMin = 0.1;
-            targetDanceabilityMax = 0.5;
+            targetDanceabilityMax = 0.6;
+            targetDanceability = 0.25;
             targetEnergyMin = 0.1;
             targetEnergyMax = 0.5;
-            targetKey = 2; 
+            //targetKey = 2; 
             targetLoudness = 0.3;
-            targetPopularityMin = 20; 
-            targetPopularityMax = 80; 
+            targetPopularity = 1;
             targetTempoMin = 50; 
-            targetTempoMax = 90; 
+            targetTempoMax = 100;
+            targetTempo = 70;
             targetValence = 0.2;
+            targetMode = 0;
             break;
         case 'angry':
-            targetDanceabilityMin = 0.5;
-            targetDanceabilityMax = 0.9;
+            targetDanceabilityMin = 0.4;
+            targetDanceabilityMax = 1;
+            targetDanceability = 0.8;
             targetEnergyMin = 0.7;
             targetEnergyMax = 1.0;
-            targetKey = 11; 
+            //targetKey = 11; 
             targetLoudness = 0.9;
-            targetPopularityMin = 20; 
-            targetPopularityMax = 80; 
-            targetTempoMin = 130; 
-            targetTempoMax = 170; 
+            targetPopularity = 1;
+            targetTempoMin = 100; 
+            targetTempoMax = 190;
+            targetTempo = 150;
             targetValence = 0.3;
+            targetMode = 0;
             break;
         case 'chill':
-            targetDanceabilityMin = 0.3;
-            targetDanceabilityMax = 0.6;
+            targetDanceabilityMin = 0.2;
+            targetDanceabilityMax = 0.7;
+            targetDanceability = 0.4;
             targetEnergyMin = 0.3;
             targetEnergyMax = 0.7;
-            targetKey = 5; 
+            //targetKey = 5; 
             targetLoudness = 0.4;
-            targetPopularityMin = 20; 
-            targetPopularityMax = 80; 
-            targetTempoMin =70; 
-            targetTempoMax = 120; 
+            targetPopularity = 1;
+            targetTempoMin =65; 
+            targetTempoMax = 120;
+            targetTempo = 100;
             targetValence = 0.55;
+            targetMode = 1;
             break;
         default:
             throw new Error('Invalid mood');
     }
 
     // Make a request to Spotify API to get recommended songs
-    const url = `https://api.spotify.com/v1/recommendations?limit=100&market=FR&seed_genres=${seedGenres}&target_danceability_min=${targetDanceabilityMin}&target_danceability_max=${targetDanceabilityMax}&target_energy_min=${targetEnergyMin}&target_energy_max=${targetEnergyMax}&target_key=${targetKey}&target_loudness=${targetLoudness}&target_popularity=${targetPopularityMin}&target_tempo=${targetTempoMin}`;
+    const url = `https://api.spotify.com/v1/recommendations?limit=100&market=FR&seed_genres=${seedGenres}&min_danceability=${targetDanceabilityMin}&max_danceability=${targetDanceabilityMax}&target_danceability=${targetDanceability}&min_energy=${targetEnergyMin}&max_energy=${targetEnergyMax}&target_loudness=${targetLoudness}&target_popularity=${targetPopularity}&min_tempo=${targetTempoMin}&max_tempo=${targetTempoMax}&target_tempo=${targetTempo}&target_valence=${targetValence}&target_mode=${targetMode}`;
     const headers = {
         Authorization: `Bearer ${accessToken}`,
     };
